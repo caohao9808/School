@@ -1,0 +1,24 @@
+<resources>
+
+    <style name="AppTheme" parent="@style/QMUI.Compat.NoActionBar">
+
+        <item name="app_primary_color">@color/app_color_theme_1</item>
+
+        <item name="colorPrimary">?attr/app_primary_color</item>
+        <item name="colorPrimaryDark">?attr/app_primary_color</item>
+        <item name="colorAccent">@color/app_color_theme_4</item>
+
+
+        <item name="qmui_round_btn_border_color">?attr/app_primary_color</item>
+        <item name="qmui_topbar_height">48dp</item>
+
+
+        <item name="qmui_list_item_height_higher">56dp</item>
+        <item name="qmui_common_list_item_title_v_text_size">18dp</item>
+
+
+
+
+    </style>
+
+</resources>

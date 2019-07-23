@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.qmuiteam.qmui.widget.QMUIWindowInsetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.qmuiteam.qmui.widget.QMUIViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/home_tab_height" />
+
+
+        <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_tab_height"
+            android:layout_gravity="bottom"
+            android:background="#F3F5F4"
+            app:itemIconTint="@color/selector_tab_item"
+            app:itemTextColor="@color/selector_tab_item"
+            app:menu="@menu/menu_tab" />
+
+
+    </com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>
+</layout>
