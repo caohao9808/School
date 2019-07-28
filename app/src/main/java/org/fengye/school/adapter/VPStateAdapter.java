@@ -1,19 +1,18 @@
 package org.fengye.school.adapter;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import org.fengye.school.base.BaseFragment;
+import org.fengye.school.base.BaseSimpleFragment;
 
 import java.util.ArrayList;
 
 public class VPStateAdapter extends FragmentStatePagerAdapter {
 
-    private ArrayList<BaseFragment> fragments;
+    private ArrayList<BaseSimpleFragment> fragments;
 
-    public VPStateAdapter(FragmentManager fm, ArrayList<BaseFragment> fragments) {
+    public VPStateAdapter(FragmentManager fm, ArrayList<BaseSimpleFragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }

@@ -6,19 +6,23 @@
 
         <item name="colorPrimary">?attr/app_primary_color</item>
         <item name="colorPrimaryDark">?attr/app_primary_color</item>
-        <item name="colorAccent">@color/app_color_theme_4</item>
+        <item name="colorAccent">?attr/app_primary_color</item>
 
 
         <item name="qmui_round_btn_border_color">?attr/app_primary_color</item>
         <item name="qmui_topbar_height">48dp</item>
 
+        <item name="qmui_dialog_menu_item_style">@style/DialogThemeMenuItemStyle</item>
 
         <item name="qmui_list_item_height_higher">56dp</item>
         <item name="qmui_common_list_item_title_v_text_size">18dp</item>
 
-
-
-
     </style>
+
+
+    <style name="DialogThemeMenuItemStyle" parent="@style/QMUI.Dialog_MenuItem">
+        <!--<item name="qmui_dialog_menu_item_mark_drawable">@drawable/qmui_dialog_check_mark</item>-->
+    </style>
+
 
 </resources>

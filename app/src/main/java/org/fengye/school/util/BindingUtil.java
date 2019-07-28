@@ -1,5 +1,7 @@
 package org.fengye.school.util;
 
+import android.text.TextUtils;
+
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.databinding.BindingAdapter;
 
@@ -15,6 +17,11 @@ public class BindingUtil {
 
     @BindingAdapter({"imageUrl"})
     public static void imageUrl(AppCompatImageView imageView, String url) {
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+
         RequestOptions requestOptions = RequestOptions.bitmapTransform(new BlurTransformation(8, 1))
                 .placeholder(R.drawable.ic_image_placeholder)
                 .error(R.drawable.ic_image_placeholder);
@@ -27,6 +34,10 @@ public class BindingUtil {
     }
     @BindingAdapter({"roundAvatarUrl"})
     public static void roundAvatarUrl(QMUIRadiusImageView imageView, String url) {
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
 
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.mipmap.ic_launcher)

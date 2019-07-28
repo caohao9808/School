@@ -5,6 +5,14 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="question"
+            type="org.fengye.school.model.bmob.Question" />
+
     </data>
 
     <LinearLayout
@@ -22,130 +30,155 @@
             app:qmui_topbar_title_color="@color/white" />
 
 
-
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/gray_5">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/gray_5"
+            app:srlEnableLoadMoreWhenContentNotFull="false">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="12dp"
-                            android:paddingTop="8dp"
-                            android:paddingRight="12dp"
-                            android:paddingBottom="8dp"
-                            android:text="被家长赶出家门，在什么地方玩手机比较合适？"
-                            android:textSize="20dp"
-                            android:textStyle="bold" />
-
+                        android:background="@color/white">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="12dp"
-                            android:paddingTop="4dp"
-                            android:paddingRight="12dp"
-                            android:paddingBottom="4dp">
-
-                            <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                app:qmui_is_circle="true"
-                                app:srcCompat="@mipmap/ic_launcher" />
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="湖北工程学院"
-                                android:textSize="10dp" />
+                                android:paddingLeft="12dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="12dp"
+                                android:paddingBottom="8dp"
+                                android:text="@{question.title}"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
 
-                            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                                android:layout_width="wrap_content"
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="4dp"
-                                android:clickable="false"
-                                android:paddingLeft="3dp"
-                                android:paddingTop="1dp"
-                                android:paddingRight="3dp"
-                                android:paddingBottom="1dp"
-                                android:text="提问"
-                                android:textColor="@color/white"
-                                android:textSize="10sp"
-                                app:qmui_backgroundColor="?attr/app_primary_color"
-                                app:qmui_radius="1dp" />
+                                android:paddingLeft="12dp"
+                                android:paddingTop="4dp"
+                                android:paddingRight="12dp"
+                                android:paddingBottom="4dp">
+
+                                <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="17dp"
+                                    app:qmui_is_circle="true"
+                                    app:roundAvatarUrl="@{question.user.avatar}"
+                                    app:srcCompat="@mipmap/ic_launcher" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_weight="1"
+                                    android:text="@{question.user.nickname}"
+                                    android:textSize="10dp" />
+
+                                <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="4dp"
+                                    android:clickable="false"
+                                    android:paddingLeft="3dp"
+                                    android:paddingTop="1dp"
+                                    android:paddingRight="3dp"
+                                    android:paddingBottom="1dp"
+                                    android:text="提问"
+                                    android:textColor="?attr/app_primary_color"
+                                    android:textSize="10sp"
+                                    app:qmui_radius="1dp" />
+
+
+                            </LinearLayout>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="12dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="12dp"
+                                android:visibility="@{TextUtils.isEmpty(question.content) ? View.GONE : View.VISIBLE}"
+                                android:paddingBottom="8dp"
+                                android:text="@{question.content}"
+                                android:textColor="@color/gray_90"
+                                android:textSize="16sp" />
 
 
                         </LinearLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="12dp"
-                            android:paddingTop="8dp"
-                            android:paddingRight="12dp"
-                            android:paddingBottom="8dp"
-                            android:textColor="@color/gray_90"
-                            android:text="不打死可惜了。"
-                            android:textSize="16sp"/>
+                    </FrameLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="8dp"
+                        android:text="@{@string/all_answer2(question.numberOfAnswers)}"
+                        android:textColor="@color/gray_40"
+                        android:textSize="12sp" />
 
 
-                    </LinearLayout>
-
-                </FrameLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="8dp"
-                    android:text="共99人回答"
-                    android:textColor="@color/gray_40"
-                    android:textSize="12sp" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_answer"></androidx.recyclerview.widget.RecyclerView>
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycle_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/item_answer"></androidx.recyclerview.widget.RecyclerView>
-
-
-            </LinearLayout>
+                </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
 
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/answer_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_edit"
+                android:drawablePadding="2dp"
+                android:drawableTint="@color/white"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="添加回答"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
 
     </LinearLayout>

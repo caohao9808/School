@@ -4,9 +4,10 @@
 
     <data>
 
+
         <variable
             name="todayWord"
-            type="org.fengye.school.model.bean.TodayWord" />
+            type="org.fengye.school.model.sqlite.TodayWord" />
 
         <variable
             name="viewModel"
@@ -28,87 +29,315 @@
             app:qmui_topbar_text_btn_color_state_list="@android:color/white"
             app:qmui_topbar_title_color="@color/white" />
 
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refresh_layout"
+        <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+        <!--android:id="@+id/refresh_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/gray_5"-->
+        <!--app:srlEnablePureScrollMode="true">-->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srlEnablePureScrollMode="true"
-            android:background="@color/gray_5">
+            android:background="@color/gray_5"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
 
-                <com.google.android.material.card.MaterialCardView
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_image_placeholder"
+                        app:imageUrl="@{todayWord.picture2}" />
+
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:clickable="false"
+                        android:paddingLeft="3dp"
+                        android:paddingTop="1dp"
+                        android:paddingRight="3dp"
+                        android:paddingBottom="1dp"
+                        android:text="每日一句"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:qmui_radius="0.5dp" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/play_sentence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_volume"
+                        android:tint="?attr/app_primary_color" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/word_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:onClick="@{viewModel.changeShowEnglish}"
+                        android:text="@={viewModel.wordShow}"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="@{viewModel.studyPlanField.get()!=null ? viewModel.studyPlanField.get().planName : @string/no_plan}"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/reset_plan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableRight="@drawable/ic_arrow_right"
+                        android:drawablePadding="0dp"
+                        android:drawableTint="@color/gray_40"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="修改计划"
+                        android:textColor="@color/gray_40"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="?attr/app_primary_color">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp">
+                        android:layout_height="wrap_content"
+                        android:background="#88FFFFFF">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_image_placeholder"
-                            app:imageUrl="@{todayWord.picture2}" />
-
-                        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/all_learn_word"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="8dp"
-                            android:clickable="false"
-                            android:paddingLeft="3dp"
-                            android:paddingTop="1dp"
-                            android:paddingRight="3dp"
-                            android:paddingBottom="1dp"
-                            android:text="每日一句"
-                            android:textColor="@color/white"
-                            android:textSize="10sp"
-                            app:qmui_radius="0.5dp" />
+                            android:layout_alignParentLeft="true"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="12dp"
+                            android:paddingRight="8dp"
+                            android:paddingBottom="12dp"
+                            android:text="@{@string/already_learn_total(viewModel.allAlreadyLearn.get())}"
+                            android:textColor="@color/white" />
 
-                        <androidx.appcompat.widget.AppCompatImageButton
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:background="?android:attr/selectableItemBackground"
                             android:clickable="true"
-                            android:padding="8dp"
-                            android:src="@drawable/ic_volume"
-                            android:tint="?attr/app_primary_color" />
-
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/word_content"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:layout_marginBottom="12dp"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:clickable="true"
-                            android:onClick="@{viewModel.changeShowEnglish}"
-                            android:text="@={viewModel.wordShow}"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
+                            android:paddingLeft="8dp"
+                            android:paddingTop="12dp"
+                            android:paddingRight="8dp"
+                            android:paddingBottom="12dp"
+                            android:text="@{@string/words_total(viewModel.studyPlanField.get().planTotal ?? 0)}"
+                            android:textColor="@color/white" />
 
                     </RelativeLayout>
 
 
-                </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="16dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="16dp">
+
+                        <LinearLayout
+                            android:id="@+id/today_words"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{String.valueOf(viewModel.todayWords.get())}"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="今日单词"
+                                android:textColor="@color/white"
+                                android:textSize="14dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/today_ready_learn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{String.valueOf(viewModel.todayAlreadyLearn.get())}"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="今日已学"
+                                android:textColor="@color/white"
+                                android:textSize="14dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/not_know"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{String.valueOf(viewModel.notKnowWords.get())}"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="不认识"
+                                android:textColor="@color/white"
+                                android:textSize="14dp" />
+
+                        </LinearLayout>
 
 
-            </LinearLayout>
+                    </LinearLayout>
+
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:id="@+id/start_words"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="16dp"
+                        android:clickable="true"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:text="开始学习"
+                        android:textColor="?attr/app_primary_color"
+                        android:textSize="20sp"
+                        app:qmui_backgroundColor="@color/white"
+                        app:qmui_borderColor="@color/white" />
 
 
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+        <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
 
     </LinearLayout>
 </layout>

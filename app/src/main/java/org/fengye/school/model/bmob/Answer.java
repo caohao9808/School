@@ -1,11 +1,11 @@
-package org.fengye.school.model.bean;
+package org.fengye.school.model.bmob;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.datatype.BmobFile;
 
-public class Answer extends BmobObject {
+public class Answer extends BmobObject implements Serializable {
 
 
     private User user;

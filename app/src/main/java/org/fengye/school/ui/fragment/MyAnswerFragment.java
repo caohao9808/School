@@ -2,18 +2,15 @@ package org.fengye.school.ui.fragment;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -21,65 +18,55 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import org.fengye.school.R;
 import org.fengye.school.adapter.AnswerQuestionAdapter;
 import org.fengye.school.base.BaseFragment;
-import org.fengye.school.databinding.FragmentQuestionBinding;
-import org.fengye.school.model.bean.Answer;
+import org.fengye.school.databinding.FragmentAnswerBinding;
+import org.fengye.school.databinding.FragmentMyAnswerBinding;
+import org.fengye.school.databinding.ItemHomeQuestionBinding;
+import org.fengye.school.listener.AbsQueryListener;
+import org.fengye.school.model.bmob.Answer;
+import org.fengye.school.model.bmob.Question;
+import org.fengye.school.repository.QuestionRepository;
 import org.fengye.school.vm.AnswerQuestionViewModel;
-import org.fengye.school.vm.QuestionViewModel;
+import org.fengye.school.vm.MyAnswerQuestionViewModel;
 
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuestionFragment extends BaseFragment<FragmentQuestionBinding> implements OnRefreshLoadMoreListener {
+public class MyAnswerFragment extends BaseFragment<FragmentMyAnswerBinding, MyAnswerQuestionViewModel> implements OnRefreshLoadMoreListener {
 
 
-    private static final String TAG = "QuestionFragment";
+    private static final String TAG = "AnswerFragment";
 
 
     private AnswerQuestionAdapter adapter;
 
-    private AnswerQuestionViewModel viewModel;
+    private QuestionRepository questionRepository = new QuestionRepository();
 
 
-    public static QuestionFragment newInstance() {
+
+    public static MyAnswerFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        QuestionFragment fragment = new QuestionFragment();
+        MyAnswerFragment fragment = new MyAnswerFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public QuestionFragment() {
+    public MyAnswerFragment() {
+    }
+
+    @Override
+    protected MyAnswerQuestionViewModel createViewModel() {
+        return ViewModelProviders.of(this,viewModelFactory).get(MyAnswerQuestionViewModel.class);
     }
 
     @Override
     protected void initView() {
         super.initView();
-        binding.topBar.setTitle("问答");
+        binding.topBar.setTitle("我的回答");
 
-        binding.topBar.addRightTextButton("提问", R.id.topbar_right_view)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startFragment(PostQuestionFragment.newInstance());
-                    }
-                });
-
-
-        //        binding.topBar.addRightView(getRightView(),R.id.topbar_right_view);
-
-        ViewModelProvider.Factory factory = new ViewModelProvider.Factory() {
-            @NonNull
-            @Override
-            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-                return (T) new AnswerQuestionViewModel();
-            }
-        };
-
-
-        viewModel = ViewModelProviders.of(getActivity(), factory).get(AnswerQuestionViewModel.class);
         adapter = new AnswerQuestionAdapter();
 
 
@@ -115,22 +102,21 @@ public class QuestionFragment extends BaseFragment<FragmentQuestionBinding> impl
         adapter.setItemClickListener(new AnswerQuestionAdapter.ItemClickListener() {
             @Override
             public void onItemClickListener(int position, Answer answer) {
-                startFragment(AnswerInfoFragment.newInstance());
+                startFragment(AnswerInfoFragment.newInstance(answer));
             }
         });
-
 
     }
 
     @Override
-    protected int getContentViewId() {
-        return R.layout.fragment_question;
+    protected void initData() {
+        super.initData();
+        binding.refreshLayout.autoRefresh();
     }
 
-    private View getRightView() {
-        View view = View.inflate(getContext(), R.layout.topbar_right_view, null);
-        return view;
-
+    @Override
+    protected int getContentViewId() {
+        return R.layout.fragment_my_answer;
     }
 
     @Override
@@ -140,6 +126,8 @@ public class QuestionFragment extends BaseFragment<FragmentQuestionBinding> impl
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
         viewModel.refresh();
+
     }
 }

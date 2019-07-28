@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="org.fengye.school.util.FormatUtil" />
         <variable
             name="answer"
-            type="org.fengye.school.model.bean.Answer" />
+            type="org.fengye.school.model.bmob.Answer" />
 
     </data>
 
@@ -34,7 +34,7 @@
 
                 <com.qmuiteam.qmui.widget.QMUIRadiusImageView
                     android:layout_width="32dp"
-                    app:roundAvatarUrl="@{answer.user.avatarUrl}"
+                    app:roundAvatarUrl="@{answer.user.avatar}"
                     android:layout_height="32dp"
                     app:qmui_is_circle="true"
                     app:srcCompat="@mipmap/ic_launcher" />
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{answer.content}"
+                android:text="@{FormatUtil.clearSpace(answer.content)}"
                 android:textSize="16sp" />
 
         </LinearLayout>

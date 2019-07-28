@@ -1,18 +1,15 @@
 package org.fengye.school.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.fengye.school.base.BaseQuickAdapter;
-import org.fengye.school.callback.CustomCallback;
 import org.fengye.school.databinding.ItemAnswerQuestionBinding;
-import org.fengye.school.model.bean.Answer;
+import org.fengye.school.model.bmob.Answer;
 
 public class AnswerQuestionAdapter extends BaseQuickAdapter<Answer, AnswerQuestionAdapter.ViewHolder> {
 

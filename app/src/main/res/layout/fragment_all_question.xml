@@ -27,11 +27,12 @@
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:srlEnableLoadMoreWhenContentNotFull="false"
             android:background="@color/gray_5">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycle_view"
-                tools:listitem="@layout/item_answer_question"
+                tools:listitem="@layout/item_question"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

@@ -25,4 +25,5 @@
 
     <item name="layout_for_test" type="id"/>
     <item name="topbar_right_view" type="id" />
+    <item name="topbar_left_view" type="id" />
 </resources>

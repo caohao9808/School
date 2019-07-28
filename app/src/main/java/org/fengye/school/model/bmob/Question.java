@@ -1,4 +1,4 @@
-package org.fengye.school.model.bean;
+package org.fengye.school.model.bmob;
 
 import java.util.Objects;
 
@@ -14,6 +14,14 @@ public class Question extends BmobObject {
 
     private Integer numberOfAnswers;
 
+
+
+    public Question() {
+    }
+
+    public Question(String objId) {
+        setObjectId(objId);
+    }
 
     public User getUser() {
         return user;

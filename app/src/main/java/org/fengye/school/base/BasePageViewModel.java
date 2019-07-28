@@ -3,9 +3,6 @@ package org.fengye.school.base;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import org.fengye.school.listener.AbsQueryListener;
-import org.fengye.school.model.bean.Answer;
-import org.fengye.school.repository.AnswerQuestionRepository;
 import org.fengye.school.util.PageUtil;
 
 import java.util.List;
@@ -42,7 +39,6 @@ public abstract class BasePageViewModel<M> extends ViewModel {
 
     public void refresh() {
         pageUtil.refresh();
-
         getData(true);
 
     }

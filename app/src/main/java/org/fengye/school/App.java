@@ -13,6 +13,8 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 
 import org.litepal.LitePal;
 
@@ -39,7 +41,10 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Bmob.initialize(this, "2316e16b2e60101e2c7a486d33194dbc");
+        Bmob.initialize(this, "2cc906fe3ee53c4e16d5294c4fd89b72");
+        UMConfigure.init(this, "5d3bfbb44ca357272b000202", "hugong", UMConfigure.DEVICE_TYPE_PHONE, "");
+        PlatformConfig.setQQZone("101741354", "d6f68589c18da98aa2b824a89702a83d");
+
         QMUISwipeBackActivityManager.init(this);
         Toasty.Config.getInstance()
                 .allowQueue(false)

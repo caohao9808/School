@@ -1,6 +1,29 @@
 <resources>
-    <string name="app_name">School</string>
+    <string name="app_name">湖工社区</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="already_learn_total">已学习 %1$d</string>
+
+    <string name="words_total">单词总数 %1$d</string>
+
+    <string name="today_already_learn">今日已学 %1$d</string>
+
+    <string name="today_words">今日单词 %1$d</string>
+
+    <string name="not_know_words">不认识 %1$d</string>
+
+    <string name="no_plan">无计划</string>
+
+    <string name="all_answer">查看全部%1$d个回答</string>
+
+    <string name="all_answer2">共%1$d个回答</string>
+
+    <string name="not_login">未登录</string>
+
+    <string name="zero">0</string>
+    <string name="empty"></string>
+
+
 </resources>

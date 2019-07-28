@@ -1,19 +1,10 @@
 package org.fengye.school.vm;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.paging.LivePagedListBuilder;
-import androidx.paging.PagedList;
-
 import org.fengye.school.base.BasePageViewModel;
-import org.fengye.school.data.CustomPageDataSourceFactory;
 import org.fengye.school.listener.AbsQueryListener;
-import org.fengye.school.model.bean.Answer;
-import org.fengye.school.model.bean.Question;
+import org.fengye.school.model.bmob.Answer;
+import org.fengye.school.model.bmob.Question;
 import org.fengye.school.repository.AnswerQuestionRepository;
-import org.fengye.school.repository.QuestionRepository;
-import org.fengye.school.util.PageUtil;
 
 import java.util.List;
 
@@ -22,6 +13,8 @@ public class QuestionViewModel  extends BasePageViewModel<Answer> {
 
     private AnswerQuestionRepository answerQuestionRepository;
 
+    private Question question;
+
 
     public QuestionViewModel() {
         answerQuestionRepository = new AnswerQuestionRepository();
@@ -29,7 +22,8 @@ public class QuestionViewModel  extends BasePageViewModel<Answer> {
 
     @Override
     protected void getData(final boolean isRefresh) {
-        answerQuestionRepository.getDataByPosition(pageUtil.currentPage * pageUtil.pageSize,
+
+        answerQuestionRepository.getDataByPosition(question,pageUtil.currentPage * pageUtil.pageSize,
                 pageUtil.pageSize,
                 new AbsQueryListener<List<Answer>>() {
                     @Override
@@ -45,5 +39,7 @@ public class QuestionViewModel  extends BasePageViewModel<Answer> {
                 });
     }
 
-
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
 }

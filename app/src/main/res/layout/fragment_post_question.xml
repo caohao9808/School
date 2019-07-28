@@ -29,6 +29,7 @@
             android:paddingRight="16dp">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/question_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_edittext_bg"
@@ -41,6 +42,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/question_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"

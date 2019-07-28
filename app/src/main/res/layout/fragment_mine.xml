@@ -4,6 +4,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="org.fengye.school.vm.UserViewModel" />
+
     </data>
 
     <LinearLayout
@@ -49,6 +53,7 @@
                             android:layout_centerHorizontal="true"
                             app:qmui_border_color="@color/white"
                             app:qmui_border_width="1dp"
+                            app:roundAvatarUrl="@{viewModel.user.get()!=null? viewModel.user.get().avatar : @string/empty}"
                             app:qmui_is_circle="true"
                             app:srcCompat="@mipmap/ic_launcher" />
 
@@ -59,7 +64,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="36dp"
-                            android:text="湖北工程学院"
+                            android:text="@{viewModel.user.get()!=null ? viewModel.user.get().nickname : @string/not_login}"
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -92,7 +97,7 @@
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="999"
+                                    android:text="@{viewModel.user.get()!=null ? String.valueOf(viewModel.user.get().numberOfQuestion) : @string/zero}"
                                     android:textSize="16dp"
                                     android:textStyle="bold" />
 
@@ -100,7 +105,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:text="点赞"
+                                    android:text="提问"
                                     android:textSize="14dp" />
 
                             </LinearLayout>
@@ -119,7 +124,7 @@
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="999"
+                                    android:text="@{viewModel.user.get()!=null ? String.valueOf(viewModel.user.get().numberOfAnswers) : @string/zero}"
                                     android:textSize="16dp"
                                     android:textStyle="bold" />
 
@@ -127,38 +132,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:text="收藏"
+                                    android:text="回答"
                                     android:textSize="14dp" />
 
                             </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="?android:attr/selectableItemBackground"
-                                android:clickable="true"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:paddingTop="8dp"
-                                android:paddingBottom="8dp">
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="999"
-                                    android:textSize="16dp"
-                                    android:textStyle="bold" />
-
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="评论"
-                                    android:textSize="14dp" />
-
-                            </LinearLayout>
-
 
                         </LinearLayout>
 

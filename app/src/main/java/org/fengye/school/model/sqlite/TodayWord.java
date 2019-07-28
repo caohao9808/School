@@ -1,4 +1,4 @@
-package org.fengye.school.model.bean;
+package org.fengye.school.model.sqlite;
 
 import org.litepal.crud.LitePalSupport;
 

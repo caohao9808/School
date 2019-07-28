@@ -4,6 +4,12 @@
 
     <data>
 
+        <import type="android.text.Html" />
+
+        <variable
+            name="answer"
+            type="org.fengye.school.model.bmob.Answer" />
+
     </data>
 
     <LinearLayout
@@ -20,83 +26,91 @@
             app:qmui_topbar_text_btn_color_state_list="@android:color/white"
             app:qmui_topbar_title_color="@color/white" />
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_5"
-            android:orientation="vertical">
+            android:background="@color/gray_5">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/question_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="8dp"
-                    android:text="被家长赶出家门，在什么地方玩手机比较合适？"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@color/gray_10" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/all_answer"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:id="@+id/question_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
-                        android:gravity="center"
+                        android:paddingLeft="12dp"
                         android:paddingTop="8dp"
+                        android:paddingRight="12dp"
                         android:paddingBottom="8dp"
-                        android:text="查看全部10个回答"
-                        android:textColor="@color/gray" />
+                        android:text="@{answer.question.title}"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
                         android:background="@color/gray_10" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:gravity="center">
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_edit"
-                            android:drawablePadding="2dp"
-                            android:drawableTint="?attr/app_primary_color"
+                            android:id="@+id/all_answer"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
                             android:gravity="center"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
-                            android:text="添加回答"
-                            android:textColor="?attr/app_primary_color" />
+                            android:text="@{@string/all_answer(answer.question.numberOfAnswers)}"
+                            android:textColor="@color/gray" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:background="@color/gray_10" />
+
+                        <LinearLayout
+                            android:id="@+id/answer_question"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_edit"
+                                android:drawablePadding="2dp"
+                                android:drawableTint="?attr/app_primary_color"
+                                android:gravity="center"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:text="添加回答"
+                                android:textColor="?attr/app_primary_color" />
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
@@ -104,67 +118,70 @@
                 </LinearLayout>
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/white"
-                android:clickable="true"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="8dp">
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp">
 
-                    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        app:qmui_is_circle="true"
-                        app:srcCompat="@mipmap/ic_launcher" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            app:qmui_is_circle="true"
+                            app:roundAvatarUrl="@{answer.user.avatar}"
+                            app:srcCompat="@mipmap/ic_launcher" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:text="@{answer.user.nickname}" />
+
+                        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="4dp"
+                            android:clickable="false"
+                            android:paddingLeft="3dp"
+                            android:paddingTop="1dp"
+                            android:paddingRight="3dp"
+                            android:paddingBottom="1dp"
+                            android:text="回答"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            app:qmui_backgroundColor="?attr/app_primary_color"
+                            app:qmui_radius="1dp" />
+
+
+                    </LinearLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:text="湖北工程学院" />
-
-                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="4dp"
-                        android:clickable="false"
-                        android:paddingLeft="3dp"
-                        android:paddingTop="1dp"
-                        android:paddingRight="3dp"
-                        android:paddingBottom="1dp"
-                        android:text="回答"
-                        android:textColor="@color/white"
-                        android:textSize="10sp"
-                        app:qmui_backgroundColor="?attr/app_primary_color"
-                        app:qmui_radius="1dp" />
-
+                        android:layout_marginTop="4dp"
+                        android:text="@{Html.fromHtml(answer.content)}"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答"
-                    android:textSize="16sp" />
 
             </LinearLayout>
 
-        </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
 
     </LinearLayout>
 </layout>

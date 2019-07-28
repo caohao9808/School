@@ -11,7 +11,6 @@ public class CustomPageDataSourceFactory<M, R extends BaseRepository> extends Da
 
     private R repository;
 
-
     public CustomPageDataSourceFactory(R repository) {
         this.repository = repository;
     }

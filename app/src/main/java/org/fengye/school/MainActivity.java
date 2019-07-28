@@ -1,13 +1,15 @@
 package org.fengye.school;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
+import com.umeng.socialize.UMShareAPI;
 
 import org.fengye.school.base.BaseActivity;
-import org.fengye.school.base.BaseFragment;
+import org.fengye.school.base.BaseSimpleFragment;
 import org.fengye.school.ui.fragment.MainFragment;
 
 public class MainActivity extends BaseActivity {
@@ -23,7 +25,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         QMUIStatusBarHelper.translucent(this);
 
-        BaseFragment fragment = getFirstFragment();
+        BaseSimpleFragment fragment = getFirstFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -31,7 +33,13 @@ public class MainActivity extends BaseActivity {
                 .addToBackStack(fragment.getClass().getSimpleName())
                 .commit();
     }
-    private BaseFragment getFirstFragment() {
+    private BaseSimpleFragment getFirstFragment() {
         return MainFragment.newInstance();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }
